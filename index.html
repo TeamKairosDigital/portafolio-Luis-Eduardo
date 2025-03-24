@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@3.3.1/primeflex.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/primeng@16.4.0/resources/themes/lara-light-blue/theme.css">
+    <link rel="stylesheet" href="https://unpkg.com/primeng@16.4.0/resources/primeng.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/primeicons@6.0.1/primeicons.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navegación -->
+        <nav class="main-nav">
+            <div class="nav-content">
+                <div class="logo">Portfolio</div>
+                <div class="nav-links">
+                    <a href="#home">Inicio</a>
+                    <a href="#about">Sobre Mí</a>
+                    <a href="#projects">Proyectos</a>
+                    <a href="#contact">Contacto</a>
+                </div>
+                <div class="nav-toggle">
+                    <i class="pi pi-bars"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sección Principal -->
+        <main>
+            <!-- Hero Section con efecto 3D -->
+            <section id="home" class="hero-section">
+                <div id="canvas-container"></div>
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 data-aos="fade-right">Desarrollador Web Full Stack</h1>
+                        <p class="subtitle" data-aos="fade-right" data-aos-delay="200">Creando experiencias digitales únicas</p>
+                        <div class="cta-buttons" data-aos="fade-right" data-aos-delay="400">
+                            <a href="#projects" class="btn primary">Ver Proyectos</a>
+                            <a href="#contact" class="btn secondary">Contactar</a>
+                        </div>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                            <span class="stat-number" data-value="4">4+</span>
+                            <span class="stat-label">Años de Experiencia</span>
+                        </div>
+                        <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                            <span class="stat-number" data-value="4">5+</span>
+                            <span class="stat-label">Proyectos Completados</span>
+                        </div>
+                        <div class="stat-item" data-aos="fade-up" data-aos-delay="600">
+                            <span class="stat-number" data-value="4">5+</span>
+                            <span class="stat-label">Clientes Satisfechos</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sobre Mí -->
+            <section id="about" class="about-section">
+                <div class="section-content">
+                    <div class="about-grid">
+                        <div class="about-text" data-aos="fade-right">
+                            <div class="profile-card" data-aos="fade-up">
+                                <div class="profile-card-inner">
+                                    <div class="profile-card-front">
+                                        <span>Luis Eduardo Rodríguez Ramírez</span>
+                                    </div>
+                                    <div class="profile-card-back">
+                                        <img src="img/profile.jpg" alt="Luis Eduardo Rodríguez Ramírez">
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 data-aos="fade-right" data-aos-delay="100">Sobre Mí</h2>
+                            <p>Hola, soy Lic. Luis Eduardo Rodríguez Ramírez </p>
+                            <p data-aos="fade-right" data-aos-delay="200">Desarrollador web apasionado por crear experiencias digitales únicas y funcionales. Me especializo en el desarrollo full stack, utilizando las últimas tecnologías y mejores prácticas.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag" data-aos="zoom-in" data-aos-delay="300">JavaScript</span>
+                                <span class="tech-tag" data-aos="zoom-in" data-aos-delay="400">HTML</span>
+                                <span class="tech-tag" data-aos="zoom-in" data-aos-delay="500">CSS</span>
+                                <span class="tech-tag" data-aos="zoom-in" data-aos-delay="600">Prime NG</span>
+                                <span class="tech-tag" data-aos="zoom-in" data-aos-delay="700">TypeScript</span>
+                                <span class="tech-tag" data-aos="zoom-in" data-aos-delay="800">PHP</span>
+                                <span class="tech-tag" data-aos="zoom-in" data-aos-delay="900">Firebase</span>
+                                <span class="tech-tag" data-aos="zoom-in" data-aos-delay="1000">Figma</span>
+                            </div>
+                        </div>
+                        <div class="skills-grid">
+                            <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                                <i class="pi pi-code"></i>
+                                <h3>Frontend</h3>
+                                <p>Angular, React</p>
+                            </div>
+                            <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+                                <i class="pi pi-server"></i>
+                                <h3>Backend</h3>
+                                <p>Node.js, .Net Core, NestJS</p>
+                            </div>
+                            <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
+                                <i class="pi pi-database"></i>
+                                <h3>Base de Datos</h3>
+                                <p>MySQL, SQL Server</p>
+                            </div>
+                            <div class="skill-card" data-aos="fade-up" data-aos-delay="600">
+                                <i class="pi pi-cloud"></i>
+                                <h3>Cloud</h3>
+                                <p>AWS S3, Docker</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Proyectos -->
+            <section id="projects" class="projects-section">
+                <div class="section-content">
+                    <h2 data-aos="fade-up">Proyectos Destacados</h2>
+                    <div class="projects-grid">
+                        <div class="carousel-container">
+                            <div class="carousel-wrapper">
+                                <!-- Los proyectos se cargarán dinámicamente aquí -->
+                            </div>
+                            <button class="carousel-button prev">
+                                <i class="pi pi-chevron-left"></i>
+                            </button>
+                            <button class="carousel-button next">
+                                <i class="pi pi-chevron-right"></i>
+                            </button>
+                            <div class="carousel-indicators"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contacto -->
+            <section id="contact" class="contact-section">
+                <div class="section-content">
+                    <div class="contact-grid">
+                        <div class="contact-info" data-aos="fade-right">
+                            <h2 data-aos="fade-right" data-aos-delay="100">Contacto</h2>
+                            <p data-aos="fade-right" data-aos-delay="200">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+                            <div class="contact-details">
+                                <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
+                                    <i class="pi pi-envelope"></i>
+                                    <span>luisrodriguez0698@gmail.com</span>
+                                </div>
+                                <div class="contact-item" data-aos="fade-right" data-aos-delay="400">
+                                    <i class="pi pi-map-marker"></i>
+                                    <span>Tuxtla Gutiérrez, Chiapas, México</span>
+                                </div>
+                                <div class="contact-item" data-aos="fade-right" data-aos-delay="500">
+                                    <i class="pi pi-phone"></i>
+                                    <span>+52 961 238 5401</span>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="contact-form" data-aos="fade-left">
+                            <div class="form-group" data-aos="fade-left" data-aos-delay="200">
+                                <input type="text" placeholder="Nombre" required>
+                            </div>
+                            <div class="form-group" data-aos="fade-left" data-aos-delay="300">
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group" data-aos="fade-left" data-aos-delay="400">
+                                <textarea placeholder="Mensaje" required></textarea>
+                            </div>
+                            <button type="submit" class="btn primary" data-aos="fade-left" data-aos-delay="500">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <!-- Enlaces a redes sociales 
+                <div class="social-links">
+                    <a href="#" class="social-link" data-aos="fade-up" data-aos-delay="200"><i class="pi pi-github"></i></a>
+                    <a href="#" class="social-link" data-aos="fade-up" data-aos-delay="300"><i class="pi pi-linkedin"></i></a>
+                    <a href="#" class="social-link" data-aos="fade-up" data-aos-delay="400"><i class="pi pi-twitter"></i></a>
+                </div>
+                -->
+                <p data-aos="fade-up" data-aos-delay="500">&copy; 2025 Mi Portafolio. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
