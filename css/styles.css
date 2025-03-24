@@ -573,6 +573,16 @@ h2 {
     .projects-grid {
         grid-template-columns: 1fr;
     }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .profile-card {
+        width: 250px;
+        height: 250px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -740,4 +750,60 @@ h2 {
     .carousel-button.next {
         right: 0.5rem;
     }
+}
+
+/* Estilos para la tarjeta de perfil */
+.profile-card {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    perspective: 1000px;
+    margin: 0 auto 2rem;
+}
+
+.profile-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.profile-card:hover .profile-card-inner {
+    transform: rotateY(180deg);
+}
+
+.profile-card-front,
+.profile-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.profile-card-front {
+    background: linear-gradient(45deg, var(--secondary-color), #01a556);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.profile-card-back {
+    background: #fff;
+    transform: rotateY(180deg);
+}
+
+.profile-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 } 

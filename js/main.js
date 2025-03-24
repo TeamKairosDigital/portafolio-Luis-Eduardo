@@ -219,6 +219,7 @@ function initCarousel() {
 
     function goToSlide(index) {
         currentSlide = index;
+        carousel.style.transition = 'transform 0.5s ease-in-out';
         carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
         updateIndicators();
     }
@@ -237,13 +238,34 @@ function initCarousel() {
     nextButton.addEventListener('click', nextSlide);
     prevButton.addEventListener('click', prevSlide);
 
-    // Autoplay
+    // Autoplay infinito
     let autoplayInterval = setInterval(nextSlide, 5000);
 
     // Pausar autoplay al hover
     carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
     carousel.addEventListener('mouseleave', () => {
         autoplayInterval = setInterval(nextSlide, 5000);
+    });
+
+    // Manejar la transición infinita
+    carousel.addEventListener('transitionend', () => {
+        if (currentSlide === totalSlides - 1) {
+            carousel.style.transition = 'none';
+            currentSlide = 0;
+            carousel.style.transform = `translateX(0)`;
+            setTimeout(() => {
+                carousel.style.transition = 'transform 0.5s ease-in-out';
+            }, 10);
+            updateIndicators();
+        } else if (currentSlide === 0) {
+            carousel.style.transition = 'none';
+            currentSlide = totalSlides - 1;
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            setTimeout(() => {
+                carousel.style.transition = 'transform 0.5s ease-in-out';
+            }, 10);
+            updateIndicators();
+        }
     });
 }
 
