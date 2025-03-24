@@ -269,6 +269,101 @@ function initCarousel() {
     });
 }
 
+// Cursor personalizado
+function initCustomCursor() {
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let dotX = 0;
+    let dotY = 0;
+    let particles = [];
+
+    // Crear partículas
+    function createParticle(x, y) {
+        const particle = document.createElement('div');
+        particle.className = 'cursor-particle';
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.width = Math.random() * 10 + 5 + 'px';
+        particle.style.height = particle.style.width;
+        document.body.appendChild(particle);
+        particles.push({
+            element: particle,
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 8,
+            vy: (Math.random() - 0.5) * 8,
+            life: 1
+        });
+    }
+
+    // Actualizar partículas
+    function updateParticles() {
+        particles.forEach((particle, index) => {
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            particle.life -= 0.02;
+            particle.element.style.left = particle.x + 'px';
+            particle.element.style.top = particle.y + 'px';
+            particle.element.style.opacity = particle.life;
+
+            if (particle.life <= 0) {
+                particle.element.remove();
+                particles.splice(index, 1);
+            }
+        });
+    }
+
+    // Eventos del mouse
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Crear partículas al mover el mouse
+        if (Math.random() < 0.3) {
+            createParticle(mouseX, mouseY);
+        }
+    });
+
+    document.addEventListener('mousedown', (e) => {
+        cursor.classList.add('cursor-active');
+        cursorDot.classList.add('cursor-dot-active');
+        
+        // Crear explosión de partículas al hacer clic
+        for (let i = 0; i < 10; i++) {
+            createParticle(e.clientX, e.clientY);
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('cursor-active');
+        cursorDot.classList.remove('cursor-dot-active');
+    });
+
+    // Animación suave del cursor
+    function animate() {
+        // Cursor principal
+        cursorX += (mouseX - cursorX) * 0.1;
+        cursorY += (mouseY - cursorY) * 0.1;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+
+        // Punto del cursor
+        dotX += (mouseX - dotX) * 0.3;
+        dotY += (mouseY - dotY) * 0.3;
+        cursorDot.style.left = dotX + 'px';
+        cursorDot.style.top = dotY + 'px';
+
+        updateParticles();
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
     initThree();
@@ -277,6 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initStatsCounter();
     initCarousel();
+    initCustomCursor();
 
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseleave', onMouseLeave);

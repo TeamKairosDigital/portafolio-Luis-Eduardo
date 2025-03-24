@@ -10,11 +10,55 @@
     --container-width: 1400px;
 }
 
-/* Estilos generales */
+/* Cursor personalizado */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.2s ease;
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+.cursor-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+}
+
+.cursor-particle {
+    position: fixed;
+    pointer-events: none;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 9998;
+}
+
+.cursor-active {
+    transform: scale(1.5);
+    background: var(--secondary-color);
+}
+
+.cursor-dot-active {
+    transform: scale(1.5);
+}
+
+/* Ocultar cursor por defecto */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none !important;
 }
 
 body {
