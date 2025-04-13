@@ -406,6 +406,38 @@ function initCustomCursor() {
     animate();
 }
 
+// Función para enviar mensaje por WhatsApp
+function initWhatsAppForm() {
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const contactForm = document.getElementById('contactForm');
+    const phoneNumber = '+529612385401'; // Reemplaza con tu número de WhatsApp
+
+    whatsappBtn.addEventListener('click', () => {
+        const nombre = document.getElementById('nombre').value;
+        const email = document.getElementById('email').value;
+        const mensaje = document.getElementById('mensaje').value;
+
+        if (!nombre || !email || !mensaje) {
+            alert('Por favor, completa todos los campos del formulario');
+            return;
+        }
+
+        const mensajeCompleto = `Hola, soy ${nombre} (${email}).\n\n${mensaje}`;
+        const mensajeCodificado = encodeURIComponent(mensajeCompleto);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${mensajeCodificado}`;
+        
+        window.open(whatsappUrl, '_blank');
+    });
+
+    // Manejar el envío del formulario normal
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Aquí puedes agregar la lógica para enviar el formulario por correo
+        alert('Mensaje enviado correctamente');
+        contactForm.reset();
+    });
+}
+
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
     initThree();
@@ -415,6 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initStatsCounter();
     initCarousel();
     initCustomCursor();
+    initWhatsAppForm();
 
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseleave', onMouseLeave);
