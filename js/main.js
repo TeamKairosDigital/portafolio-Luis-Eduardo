@@ -199,6 +199,7 @@ function initCarousel() {
     
     let currentSlide = 0;
     const totalSlides = slides.length;
+    let isTransitioning = false;
 
     // Crear indicadores
     slides.forEach((_, index) => {
@@ -218,25 +219,84 @@ function initCarousel() {
     }
 
     function goToSlide(index) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
         currentSlide = index;
         carousel.style.transition = 'transform 0.5s ease-in-out';
         carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
         updateIndicators();
+
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 500);
     }
 
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        goToSlide(currentSlide);
+        if (isTransitioning) return;
+        
+        if (currentSlide === totalSlides - 1) {
+            // Clonar el primer slide y añadirlo al final
+            const firstSlide = slides[0].cloneNode(true);
+            carousel.appendChild(firstSlide);
+            
+            // Mover al último slide (que ahora es el clon)
+            carousel.style.transition = 'transform 0.5s ease-in-out';
+            carousel.style.transform = `translateX(-${totalSlides * 100}%)`;
+            
+            setTimeout(() => {
+                carousel.style.transition = 'none';
+                carousel.removeChild(firstSlide);
+                carousel.style.transform = 'translateX(0)';
+                currentSlide = 0;
+                updateIndicators(); // Actualizar indicadores después del reset
+                setTimeout(() => {
+                    carousel.style.transition = 'transform 0.5s ease-in-out';
+                    isTransitioning = false;
+                }, 50);
+            }, 500);
+        } else {
+            goToSlide(currentSlide + 1);
+        }
     }
 
     function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        goToSlide(currentSlide);
+        if (isTransitioning) return;
+        
+        if (currentSlide === 0) {
+            // Clonar el último slide y añadirlo al principio
+            const lastSlide = slides[totalSlides - 1].cloneNode(true);
+            carousel.insertBefore(lastSlide, slides[0]);
+            
+            // Mover al slide clonado
+            carousel.style.transition = 'none';
+            carousel.style.transform = `translateX(-100%)`;
+            
+            setTimeout(() => {
+                carousel.style.transition = 'transform 0.5s ease-in-out';
+                carousel.style.transform = 'translateX(0)';
+                
+                setTimeout(() => {
+                    carousel.removeChild(lastSlide);
+                    currentSlide = totalSlides - 1;
+                    updateIndicators(); // Actualizar indicadores después del reset
+                    isTransitioning = false;
+                }, 500);
+            }, 50);
+        } else {
+            goToSlide(currentSlide - 1);
+        }
     }
 
     // Event listeners
     nextButton.addEventListener('click', nextSlide);
     prevButton.addEventListener('click', prevSlide);
+
+    // Navegación con teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    });
 
     // Autoplay infinito
     let autoplayInterval = setInterval(nextSlide, 5000);
@@ -247,26 +307,8 @@ function initCarousel() {
         autoplayInterval = setInterval(nextSlide, 5000);
     });
 
-    // Manejar la transición infinita
-    carousel.addEventListener('transitionend', () => {
-        if (currentSlide === totalSlides - 1) {
-            carousel.style.transition = 'none';
-            currentSlide = 0;
-            carousel.style.transform = `translateX(0)`;
-            setTimeout(() => {
-                carousel.style.transition = 'transform 0.5s ease-in-out';
-            }, 10);
-            updateIndicators();
-        } else if (currentSlide === 0) {
-            carousel.style.transition = 'none';
-            currentSlide = totalSlides - 1;
-            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-            setTimeout(() => {
-                carousel.style.transition = 'transform 0.5s ease-in-out';
-            }, 10);
-            updateIndicators();
-        }
-    });
+    // Inicializar posición
+    carousel.style.transform = 'translateX(0)';
 }
 
 // Cursor personalizado
