@@ -374,6 +374,10 @@ h2 {
     transition: transform var(--transition-speed);
 }
 
+.project-link a i{
+    font-size: 3rem;
+}
+
 .project-link:hover {
     transform: scale(1.2);
 }

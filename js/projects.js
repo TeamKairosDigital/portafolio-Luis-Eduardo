@@ -18,7 +18,7 @@ const projects = [
         title: "Sistema de Rifa con Causa",
         description: "Aplicación para gestión de reservas números de rifa conectado con Google sheet",
         image: "img/Rifa.png",
-        link: "https://rifa-con-causa-tayson.web.app/",
+        link: "https://raffle-system.web.app/",
         technologies: ["HTML", "Firebase", "JavaScript", "CSS", "Google Script"]
     },
     {
